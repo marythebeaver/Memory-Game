@@ -110,6 +110,8 @@ allcards.forEach(function(card){
     console.log(card);
     console.log(i);
     console.log(m);
+    // disable the click event on the clicked card
+    card.style.pointerEvents = 'none';   // prevent click the same item twice
 
     // change moves number and determine rating
     moves.textContent = m;
@@ -135,9 +137,10 @@ allcards.forEach(function(card){
 
       // when there's two open cards
       else{
-        // disable click
+        // disable click on all cards when two cards open
         allcards.forEach(function(card){
           card.style.pointerEvents = 'none';
+          console.log("disable all click");
         })
 
         // determine wheterht the open cards are matched, if so, turn it into match card
@@ -159,10 +162,13 @@ allcards.forEach(function(card){
         setTimeout(function closeCard() {
           card.classList.remove("open", "show");
           first_card.classList.remove("open", "show");
-          // re-enable click
-          allcards.forEach(function(card){
+          // re-enable click event on the unmached cards
+          let unmatchCards = document.querySelectorAll("card, :not(.match)");
+          unmatchCards.forEach(function(card){
             card.style.pointerEvents = 'auto';
+            console.log("enable unmactch click");
           })
+
         }, 1000);
 
         // reset i to start another run
