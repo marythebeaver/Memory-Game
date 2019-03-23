@@ -1,16 +1,9 @@
 /*
- * a list that holds all the cards
+ * create an array cardDesk that holds all the cards
  */
-
-let cardDesk = ['fa-diamond', 'fa-diamond',
-                'fa-paper-plane-o', 'fa-paper-plane-o',
-                'fa-anchor', 'fa-anchor',
-                'fa-bolt', 'fa-bolt',
-                'fa-cube', 'fa-cube',
-                'fa-leaf', 'fa-leaf',
-                'fa-bicycle', 'fa-bicycle',
-                'fa-bomb', 'fa-bomb'
-                ];
+let par = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube',
+            'fa-leaf', 'fa-bicycle','fa-bomb'];
+let cardDesk = par.concat(par);
 
 /*
  * Functions
@@ -157,7 +150,6 @@ allcards.forEach(function(card){
         i = 0;
 
         }, 1000);
-
       }
     }
   });
