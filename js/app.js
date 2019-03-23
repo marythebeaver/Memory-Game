@@ -105,30 +105,25 @@ allcards.forEach(function(card){
 
   card.addEventListener('click', function () {
     i = i + 1;
-    m = m + 1;
-    console.log('The card was clicked!');
-    console.log(card);
-    console.log(i);
-    console.log(m);
-    // disable the click event on the clicked card
-    card.style.pointerEvents = 'none';   // prevent click the same item twice
+    console.log('click event'+ i);
 
-    // change moves number and determine rating
-    moves.textContent = m;
-
-    if (m == 21){
-      document.querySelector('.fa-star').classList.remove("fa-star");
-      s = 2;
-    }
-
-    if (m == 35){
-      document.querySelector('.fa-star').classList.remove("fa-star");
-      s = 1;
-    }
-
-    // open the card if the number is under 2
+    // open the card if the click number is under 2, ignore clicks more than 2
     if (i < 3){
       card.classList.add("open", "show");
+      m = m + 1;
+
+      // change moves number and determine rating
+      moves.textContent = m;
+
+      if (m == 21){
+        document.querySelector('.fa-star').classList.remove("fa-star");
+        s = 2;
+      }
+
+      if (m == 35){
+        document.querySelector('.fa-star').classList.remove("fa-star");
+        s = 1;
+      }
 
       // record the first opened card's info
       if (i == 1){
@@ -137,11 +132,6 @@ allcards.forEach(function(card){
 
       // when there's two open cards
       else{
-        // disable click on all cards when two cards open
-        allcards.forEach(function(card){
-          card.style.pointerEvents = 'none';
-          console.log("disable all click");
-        })
 
         // determine wheterht the open cards are matched, if so, turn it into match card
         // determine whether all cards matched
@@ -162,17 +152,12 @@ allcards.forEach(function(card){
         setTimeout(function closeCard() {
           card.classList.remove("open", "show");
           first_card.classList.remove("open", "show");
-          // re-enable click event on the unmached cards
-          let unmatchCards = document.querySelectorAll("card, :not(.match)");
-          unmatchCards.forEach(function(card){
-            card.style.pointerEvents = 'auto';
-            console.log("enable unmactch click");
-          })
-
-        }, 1000);
 
         // reset i to start another run
         i = 0;
+
+        }, 1000);
+
       }
     }
   });
